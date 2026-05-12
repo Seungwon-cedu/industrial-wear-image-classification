@@ -88,6 +88,7 @@ Dockerfile, `infer.py` flow, and run commands.
 ```
 .
 ├── README.md
+├── LICENSE
 ├── requirements.txt
 ├── configs/
 │   └── preprocessing_config.yaml      # CNN + Swin variants (reference)
@@ -100,6 +101,12 @@ Dockerfile, `infer.py` flow, and run commands.
     ├── 06_evaluation_thresholding.ipynb
     └── 07_deployment.ipynb
 ```
+
+## License
+
+[MIT](LICENSE) &mdash; covers only the code in this repository. Note that the
+training data, original label taxonomy, trained weights, and industry partner
+identity remain covered by a separate NDA and are not included here.
 
 ## Quick start
 
