@@ -1,0 +1,88 @@
+# =============================================================================
+# Preprocessing Configuration
+# Industrial Wear Image Classification
+#
+# Two preprocessing variants are defined to feed two different model families:
+#   - "cnn"  : ResNet50V2 / EfficientNetV2-S baselines
+#   - "swin" : Swin Transformer V2-Tiny (final selected model)
+#
+# Both share the same detection cascade, CLAHE normalization, and probe-level
+# multi-label split logic, but differ in ROI resolution, tile size, and the
+# global-view aspect ratio used by each backbone.
+# =============================================================================
+
+paths:
+  raw_input: "./data/Image_Groups"   # raw labeled folders (each subfolder = class)
+  output_base: "./outputs"           # outputs/{variant}/01_ROI, outputs/{variant}/02_Dataset
+
+# Which variant the CLI runs by default. Override with `--variant {cnn|swin|all}`.
+variant: "swin"
+
+
+# -----------------------------------------------------------------------------
+# Variant-specific settings
+# -----------------------------------------------------------------------------
+variants:
+
+  cnn:
+    description: "Preprocessing tuned for CNN baselines (ResNet50V2 / EfficientNetV2-S)."
+    roi:
+      intermediate_width: 2000
+      intermediate_height: 700
+      target_width: 2000
+      target_height: 700
+    tiles:
+      tile_size: 320
+      global_width: 915
+      global_height: 320
+    split:
+      train_ratio: 0.70
+      val_ratio: 0.20
+
+  swin:
+    description: "Preprocessing tuned for Swin Transformer V2-Tiny (final model)."
+    roi:
+      intermediate_width: 3000
+      intermediate_height: 1050
+      target_width: 3000
+      target_height: 1050
+    tiles:
+      tile_size: 448
+      global_width: 1280
+      global_height: 448
+    split:
+      train_ratio: 0.75
+      val_ratio: 0.15
+
+
+# -----------------------------------------------------------------------------
+# Settings shared across both variants
+# -----------------------------------------------------------------------------
+common:
+  roi:
+    min_area_ratio: 0.05      # reject contours smaller than 5% of image
+    crop_margin: 15           # px inward margin after bounding-box crop
+    debug_mode: false
+
+  tiles:
+    tile_overlap: 0.0         # 0.0 = no overlap, 0.5 = 50% overlap
+    drop_edge_tiles: true     # drop leftmost/rightmost tile columns
+    clahe_clip_limit: 2.0
+    clahe_tile_grid: [8, 8]
+
+  split:
+    seed: 7
+    min_per_class_val: 1
+    min_per_class_test: 0
+
+
+# -----------------------------------------------------------------------------
+# Accepted image file extensions
+# -----------------------------------------------------------------------------
+image_extensions:
+  - ".jpg"
+  - ".jpeg"
+  - ".png"
+  - ".bmp"
+  - ".tif"
+  - ".tiff"

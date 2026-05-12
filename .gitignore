@@ -1,0 +1,46 @@
+# --- Data / Outputs (NDA-protected) -----------------------------------------
+data/
+Data/
+Image_Groups/
+outputs/
+*.png
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG
+*.tif
+*.tiff
+*.bmp
+# allow doc images
+!docs/images/*.png
+!docs/images/*.jpg
+
+# --- Models / Predictions ---------------------------------------------------
+*.pt
+*.pth
+*.keras
+*.h5
+*.onnx
+*.tar.gz
+predictions*.csv
+
+# --- NDA / Confidential -----------------------------------------------------
+NDA/
+*NDA*
+categories.xlsx
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# --- Editors / OS -----------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
