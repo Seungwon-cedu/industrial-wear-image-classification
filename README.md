@@ -17,6 +17,10 @@ class-imbalanced dataset with subtle visual differences between defect types.
 - Multi-label-aware probe-level data split (no tile leakage)
 - GPU Docker image with byte-identical local-vs-container outputs (MD5 verified)
 
+> This repository is an **NDA-safe portfolio version** of the project. It focuses
+> on the engineering methodology and reusable implementation patterns; private
+> data, trained weights, and partner-specific labels are intentionally excluded.
+
 > **Note on data.** Training images, the original label taxonomy, and the
 > industry partner's identity are covered by an NDA and **cannot be
 > redistributed or described in detail**. This repository documents the
