@@ -27,6 +27,10 @@ class-imbalanced dataset with subtle visual differences between defect types.
 > **methodology and code**. Aggregate statistics and benchmark numbers are
 > reported; concrete class names are anonymized.
 
+## Pipeline overview
+
+![NDA-safe pipeline overview](docs/images/pipeline_overview.png)
+
 ## Pipeline (step-by-step)
 
 Each step is its own notebook &mdash; key code + rationale, no boilerplate.
@@ -68,6 +72,8 @@ resolutions and split ratios differ.
 SwinV2-Tiny was selected as the production model based on macro-F1 and mAP
 &mdash; the metrics that matter most under heavy class imbalance.
 
+![Final test performance by backbone](docs/images/model_comparison.png)
+
 ## Deployment
 
 The trained classifier is packaged into a GPU Docker image based on the
@@ -92,6 +98,8 @@ Dockerfile, `infer.py` flow, and run commands.
 ├── requirements.txt
 ├── configs/
 │   └── preprocessing_config.yaml      # CNN + Swin variants (reference)
+├── docs/
+│   └── images/                        # NDA-safe diagrams and aggregate charts
 └── notebooks/
     ├── 01_roi_extraction.ipynb
     ├── 02_dual_stream_dataset.ipynb
@@ -116,4 +124,6 @@ jupyter notebook notebooks/
 ```
 
 Run the seven notebooks in order. Each one is self-contained and exposes a
-handful of small functions you can import or adapt.
+handful of small functions you can import or adapt. Because the dataset and
+trained weights are private, the notebooks are intended as a reproducible
+methodology reference rather than a fully runnable demo.

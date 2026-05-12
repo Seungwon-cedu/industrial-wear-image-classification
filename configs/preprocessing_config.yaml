@@ -12,7 +12,7 @@
 # =============================================================================
 
 paths:
-  raw_input: "./data/Image_Groups"   # raw labeled folders (each subfolder = class)
+  raw_input: "./data/raw_label_folders"  # private labeled folders (each subfolder = anonymized class)
   output_base: "./outputs"           # outputs/{variant}/01_ROI, outputs/{variant}/02_Dataset
 
 # Which variant the CLI runs by default. Override with `--variant {cnn|swin|all}`.
